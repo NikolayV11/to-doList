@@ -1,0 +1,43 @@
+.btnTheme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  width: 58px;
+  height: 25px;
+  background-color: #c9c9c95e;
+  cursor: pointer;
+}
+.slider {
+  height: 15px;
+  width: 40px;
+  border-radius: 12px;
+  // border: 1px solid #969696;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+
+  &_dark {
+    background-image: url(./img/dark.jpg);
+    background-size: cover;
+  }
+
+  &_light {
+    background-image: url(./img/light.jpeg);
+    background-size: cover;
+  }
+
+  &__circle {
+    margin-left: 2px;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    background-color: #b9b9b9b2;
+    transition: all 0.5s ease-in-out;
+
+    &_active {
+      transform: translate(180%);
+    }
+  }
+}
