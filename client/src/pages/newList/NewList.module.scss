@@ -1,4 +1,8 @@
 .block {
+  display: flex;
+  row-gap: 20px;
+  flex-direction: column;
+  justify-content: space-around;
   max-width: 100%;
   border: 1px solid #838383;
   padding: 20px;
@@ -9,46 +13,11 @@
   }
 
   &__header {
-    width: 100%;
-    position: relative;
-    input {
-      width: 97%;
-      height: 40px;
-      padding: 5px 15px;
-    }
-
-    &_btn {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      right: 10px;
-      transform: translateY(-50%);
-      top: 50%;
-
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: black;
-        width: 35px;
-        height: 35px;
-        background-color: initial;
-        border: none;
-        cursor: pointer;
-
-        &:hover {
-          border: 1px solid #8f8f8f;
-          border-radius: 50%;
-        }
-
-        SVG {
-          stroke-width: 150px;
-        }
-      }
-    }
   }
   &__main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
   }
   &__footer {
   }
@@ -56,11 +25,11 @@
 
 .toolTip {
   display: flex;
-  // top: -5px;
-  // left: 32px;
+  position: fixed;
   height: 48px;
   padding: 4px;
   background-color: #a7a5a5;
   color: inherit;
   align-items: center;
+  z-index: 999999999;
 }

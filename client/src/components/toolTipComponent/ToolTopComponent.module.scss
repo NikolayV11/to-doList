@@ -5,11 +5,13 @@
 }
 
 .toolTip {
-  display: flex;
+  display: block;
+  max-width: 200px;
+  width: max-content;
   position: absolute;
-  width: 180px;
   padding: 4px 12px;
-  margin-left: calc(100%);
+  margin-top: calc(-10%);
+  transform: translateX(-100%);
   justify-content: center;
   color: #ffffff;
   background-color: #ff8e00;
@@ -18,5 +20,4 @@
   white-space: pre-line;
   font-weight: 700;
   pointer-events: none;
-  z-index: 99;
 }

@@ -1,46 +1,26 @@
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { NameToDo, NewTask, ChangeTask } from "../../components";
 
-import { ButtonComponent, ToolTipComponent } from "../../components";
-
-import { useState } from "react";
 import styles from "./NewList.module.scss";
+
+import { RootState } from "../../app/store";
+
 export const NewList = () => {
-  const [titleList, setTitleList] = useState("");
+  const arrTask = useSelector((state: RootState) => state.newTask.listTask);
   return (
     <div className={styles.block}>
-      <div className={styles.block__header}>
-        <input
-          type="text"
-          value={titleList}
-          onChange={(e) => {
-            setTitleList(e.target.value);
-          }}
-          placeholder="d"
-        />
-        {titleList && (
-          <div className={styles.block__header_btn}>
-            <ToolTipComponent text="Очистить поле">
-              <button
-                onClick={() => {
-                  setTitleList("");
-                }}>
-                <AiOutlineClose />
-              </button>
-            </ToolTipComponent>
-            <ToolTipComponent text="Сохронить название">
-              <button>
-                <AiOutlineCheck />
-              </button>
-            </ToolTipComponent>
-          </div>
-        )}
+      <div>
+        <NameToDo />
       </div>
       <div className={styles.block__main}>
-        <ToolTipComponent text="я тут" customClass={styles.toolTip}>
-          <ButtonComponent></ButtonComponent>
-        </ToolTipComponent>
+        {arrTask.map((item, index) => {
+          return <ChangeTask {...item} key={`${index} ${item.id}`} />;
+        })}
+        {arrTask.length < 10 && <NewTask />}
       </div>
-      <div className={styles.block__footer}></div>
+      <div className={styles.block__footer}>
+        <h3>ws</h3>
+      </div>
     </div>
   );
 };

@@ -6,4 +6,7 @@ export * from "./menu";
 export * from "./link";
 export * from "./miniPost";
 export * from "./toolTipComponent";
-export * from "./buttonComponent";
+export * from "./CustomButton";
+export * from "./newTask";
+export * from "./nameToDo";
+export * from "./changeTask";

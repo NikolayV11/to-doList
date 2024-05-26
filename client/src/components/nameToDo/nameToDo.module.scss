@@ -1,0 +1,52 @@
+.block {
+  &__header {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      width: 100%;
+      height: 40px;
+      padding: 0 5rem 0 0.25rem;
+    }
+
+    &_btn {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 10px;
+      transform: translateY(-50%);
+      top: 50%;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        width: 35px;
+        height: 35px;
+        background-color: initial;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          border: 1px solid #8f8f8f;
+          border-radius: 50%;
+        }
+
+        SVG {
+          stroke-width: 150px;
+        }
+      }
+    }
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+}

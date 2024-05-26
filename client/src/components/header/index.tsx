@@ -23,7 +23,9 @@ export const Header = () => {
           </Link>
         </nav>
       )}
-      <h1>to-do list</h1>
+      <h1>
+        <Link to="/">to-do list</Link>
+      </h1>
       <Menu />
     </header>
   );
