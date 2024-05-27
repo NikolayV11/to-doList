@@ -1,3 +1,9 @@
-export const MiniPost = ({ id }: { id: number }) => {
-  return <h1>{id}</h1>;
+import { Link } from "react-router-dom";
+
+export const MiniPost = ({ title, id }: { id: number; title: string }) => {
+  return (
+    <Link to={`task/${id}`}>
+      <h1>{title}</h1>
+    </Link>
+  );
 };

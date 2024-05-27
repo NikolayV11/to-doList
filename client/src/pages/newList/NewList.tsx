@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NameToDo, NewTask, ChangeTask, CustomButton } from "../../components";
+import { NameToDo, NewTask, ChangeTaskNew, CustomButton } from "../../components";
 
 import styles from "./NewList.module.scss";
 
@@ -38,7 +38,7 @@ export const NewList = () => {
       </div>
       <div className={styles.block__main}>
         {arrTask.map((item, index) => {
-          return <ChangeTask {...item} key={`${index} ${item.id}`} />;
+          return <ChangeTaskNew {...item} key={`${index} ${item.id}`} />;
         })}
         {arrTask.length < 10 && <NewTask />}
       </div>

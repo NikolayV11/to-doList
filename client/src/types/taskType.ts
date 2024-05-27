@@ -10,3 +10,7 @@ export type ArrayTaskList = {
   status: boolean;
   listTask: Task[];
 };
+export type changeTaskType = Task & {
+  deleteTask: () => void;
+  checkedTask: () => void;
+};

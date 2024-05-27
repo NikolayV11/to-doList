@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 import { store } from "./app/store.ts";
 
-import { AllList, NewList } from "./pages";
+import { AllList, NewList, TaskList } from "./pages";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/all_list", element: <AllList /> },
       { path: "/user/:id", element: <h1>user</h1> },
       { path: "/new_list", element: <NewList /> },
+      { path: "task/:id", element: <TaskList /> },
     ],
   },
 ]);

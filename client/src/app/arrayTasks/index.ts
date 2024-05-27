@@ -14,17 +14,10 @@ export const arrayTasksSlice = createSlice({
     },
     // удаляем список задач из массива
     deleteToDoTask: (state, action: PayloadAction<number>) => {
-      const list = state.filter((item) => {
-        if (item.id !== action.payload) {
-          return item;
-        }
-      });
-
-      list.map((item, index) => {
+      state.splice(action.payload, 1);
+      state.map((item, index) => {
         item.id = index;
       });
-
-      state = list;
     },
     // изменяет статус списка задач если весь список выполнен
     taskListStatus: (state, action: PayloadAction<number>) => {
@@ -46,10 +39,19 @@ export const arrayTasksSlice = createSlice({
     deleteTaskList: (state, action: PayloadAction<number[]>) => {
       state.map((item) => {
         if (item.id === action.payload[0]) {
-          item.listTask.filter((item) => item.id !== action.payload[1]);
+          item.listTask.splice(action.payload[1], 1);
         }
       });
 
+      const arrTask = state.find((item) => item.id === action.payload[0]);
+      console.log(arrTask);
+      if (arrTask) {
+        console.log("filter1");
+        if (arrTask.listTask.length === 0) {
+          state.splice(arrTask.id, 1);
+          state.map((item, index) => (item.id = index));
+        }
+      }
       state.map((item) => {
         if (item.id === action.payload[0]) {
           item.listTask.map((item, index) => {

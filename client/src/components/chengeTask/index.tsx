@@ -1,16 +1,11 @@
-import { Task } from "../../types";
-import { changeTask, deleteTask } from "../../app/savingTasksSlice";
-import { useAppDispatch } from "../../app/store";
-import { CustomButton } from "..";
-import styles from "./changeTask.module.scss";
 import { BiSolidTrash } from "react-icons/bi";
 
-export function ChangeTask({ status, id, task }: Task) {
-  const Dispatch = useAppDispatch();
+import { CustomButton } from "../CustomButton";
+import { changeTaskType } from "../../types";
 
-  function changeStatus(id: number) {
-    Dispatch(changeTask(id));
-  }
+import styles from "./changeTask.module.scss";
+
+export function ChangeTask({ status, id, task, deleteTask, checkedTask }: changeTaskType) {
   return (
     <div className={styles.block}>
       <input
@@ -18,7 +13,7 @@ export function ChangeTask({ status, id, task }: Task) {
         type="checkbox"
         id={`s${id}`}
         onChange={() => {
-          changeStatus(id);
+          checkedTask();
         }}
       />
       <label htmlFor={`s${id}`}>
@@ -28,8 +23,7 @@ export function ChangeTask({ status, id, task }: Task) {
         text="удалить задачу"
         timeoutIn={500}
         onClick={() => {
-          console.log(id);
-          Dispatch(deleteTask(id));
+          deleteTask();
         }}>
         <BiSolidTrash />
       </CustomButton>

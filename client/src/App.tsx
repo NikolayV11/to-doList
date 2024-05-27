@@ -1,20 +1,26 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { MiniPost } from "./components";
 import { Header, Main } from "./components";
-import { useAppDispatch } from "./app/store";
+import { useAppDispatch, RootState } from "./app/store";
 import { darkTheme } from "./app/themeAppSlice";
 import { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
+
+import { UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
 function App() {
+  const taskList = useSelector((state: RootState) => state.listTask);
+
   const location = useLocation();
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
     if (localTheme === "dark") {
       dispatch(darkTheme());
     }
   }, []);
-  const sceletons = [...new Array(20)];
   return (
     <div className="container">
       <Header />
@@ -27,8 +33,8 @@ function App() {
                 Создань новый список <AiFillEdit />
               </Link>
             </div>
-            {sceletons.map((_, index) => {
-              return <MiniPost id={index} key={index} />;
+            {taskList.map((item, index) => {
+              return <MiniPost title={item.name} id={index} key={index} />;
             })}
           </>
         ) : (
