@@ -4,19 +4,23 @@ import { ArrayTaskList, Task } from "../../types";
 
 const initialState: Omit<ArrayTaskList, "status" | "id"> = {
   name: "",
-  listTask: [
-    { status: false, id: 0, task: "focus" },
-    { status: true, id: 1, task: "Ron" },
-  ],
+  listTask: [],
 };
 
 export const creatingTasksSlice = createSlice({
   name: "creatingTasks",
   initialState,
   reducers: {
+    // название списка задач
     addNameTaskList: (state, action) => {
-      state.name = action.payload;
+      const name = action.payload.trim();
+      if (name) {
+        state.name = name;
+        return;
+      }
+      state.name = "";
     },
+    // добавление задачи
     addTask: (state, action: PayloadAction<string>) => {
       const task: Task = {
         status: false,
@@ -25,8 +29,9 @@ export const creatingTasksSlice = createSlice({
       };
       state.listTask.push(task);
     },
+    // удаление задачи
     deleteTask: (state, action: PayloadAction<number>) => {
-      state.listTask = state.listTask.filter((item, index) => {
+      state.listTask = state.listTask.filter((item) => {
         console.log(action.payload);
         if (item.id !== action.payload) {
           return item;
@@ -37,6 +42,7 @@ export const creatingTasksSlice = createSlice({
         item.id = index;
       });
     },
+    // изменение статуса задачи
     changeTask: (state, action: PayloadAction<number>) => {
       state.listTask.map((item) => {
         if (item.id === action.payload) {
@@ -44,9 +50,15 @@ export const creatingTasksSlice = createSlice({
         }
       });
     },
+    // отмена создание задачи
+    cancelTaskCreation: (state) => {
+      state.listTask = [];
+      state.name = "";
+    },
   },
 });
 
-export const { addNameTaskList, addTask, deleteTask, changeTask } = creatingTasksSlice.actions;
+export const { addNameTaskList, addTask, deleteTask, changeTask, cancelTaskCreation } =
+  creatingTasksSlice.actions;
 
 export default creatingTasksSlice.reducer;

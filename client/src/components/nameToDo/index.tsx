@@ -21,6 +21,7 @@ export function NameToDo() {
     setTitleList((titleList) => titleList.trim());
     Dispatch(addNameTaskList(titleList));
     setStatusTitle(false);
+    setTitleList("");
   }
   return (
     <>
@@ -62,7 +63,10 @@ export function NameToDo() {
                 </button>
               </ToolTipComponent>
               <ToolTipComponent timeoutIn={250} text="Сохранит название">
-                <button onClick={sevenName}>
+                <button
+                  onClick={() => {
+                    sevenName();
+                  }}>
                   <AiOutlineCheck />
                 </button>
               </ToolTipComponent>

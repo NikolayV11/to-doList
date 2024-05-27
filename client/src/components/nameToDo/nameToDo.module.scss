@@ -9,6 +9,8 @@
       width: 100%;
       height: 40px;
       padding: 0 5rem 0 0.25rem;
+      background-color: inherit;
+      border-radius: 6px;
     }
 
     &_btn {
@@ -24,7 +26,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: black;
         width: 35px;
         height: 35px;
         background-color: initial;

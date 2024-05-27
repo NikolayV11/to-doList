@@ -2,6 +2,7 @@
   display: flex;
   column-gap: 20px;
   padding-bottom: 5px;
+  align-items: center;
 
   border-bottom: 1px solid rgb(66, 66, 66);
   cursor: pointer;
@@ -13,5 +14,6 @@
 
   &__status {
     text-decoration: line-through;
+    color: #4d4d4d;
   }
 }

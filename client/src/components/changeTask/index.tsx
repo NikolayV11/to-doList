@@ -8,7 +8,7 @@ import { BiSolidTrash } from "react-icons/bi";
 export function ChangeTask({ status, id, task }: Task) {
   const Dispatch = useAppDispatch();
 
-  function changeStatus(id) {
+  function changeStatus(id: number) {
     Dispatch(changeTask(id));
   }
   return (

@@ -9,6 +9,14 @@ export const NewTask = () => {
   const Dispatch = useAppDispatch();
   const [value, setValue] = React.useState<string | undefined>("");
   const refDiv = React.useRef<HTMLDivElement>(null);
+
+  function sevenTask() {
+    setValue("");
+    if (refDiv.current?.innerText) {
+      Dispatch(addTask(refDiv.current.innerText));
+      refDiv.current.innerText = "";
+    }
+  }
   return (
     <div className={styles.block_task}>
       <div
@@ -16,6 +24,11 @@ export const NewTask = () => {
         className={styles.block_task_input}
         ref={refDiv}
         contentEditable={true}
+        onKeyUp={(event) => {
+          if (event.key === "Enter") {
+            sevenTask();
+          }
+        }}
         onInput={() => {
           setValue(refDiv.current?.innerText);
         }}></div>
@@ -35,11 +48,7 @@ export const NewTask = () => {
           <CustomButton
             className={styles.btnCustom}
             onClick={() => {
-              setValue("");
-              if (refDiv.current?.innerText) {
-                Dispatch(addTask(refDiv.current.innerText));
-                refDiv.current.innerText = "";
-              }
+              sevenTask();
             }}
             timeoutIn={850}
             text="сохранить">
