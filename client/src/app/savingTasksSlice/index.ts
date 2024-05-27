@@ -2,7 +2,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { ArrayTaskList, Task } from "../../types";
 
-const initialState: Omit<ArrayTaskList, "status" | "id"> = {
+const initialState: ArrayTaskList = {
+  status: false,
+  id: 0,
   name: "",
   listTask: [],
 };
@@ -32,7 +34,6 @@ export const creatingTasksSlice = createSlice({
     // удаление задачи
     deleteTask: (state, action: PayloadAction<number>) => {
       state.listTask = state.listTask.filter((item) => {
-        console.log(action.payload);
         if (item.id !== action.payload) {
           return item;
         }

@@ -7,13 +7,30 @@ import { RootState, useAppDispatch } from "../../app/store";
 import { BiCheck, BiX } from "react-icons/bi";
 
 import { cancelTaskCreation } from "../../app/savingTasksSlice";
+import { addToDoTask } from "../../app/arrayTasks";
+import { ArrayTaskList } from "../../types";
 
 export const NewList = () => {
+  const Dispatch = useAppDispatch();
+
   const arrTask = useSelector((state: RootState) => state.newTask.listTask);
   const nameTask = useSelector((state: RootState) => state.newTask.name);
 
-  const Dispatch = useAppDispatch();
+  // длина списка
+  const lengthList = useSelector((state: RootState) => state.listTask.length);
 
+  // добавляет в общий список задач и очищает временное хранилище
+  function addTaskArray() {
+    const task: ArrayTaskList = {
+      id: lengthList,
+      status: false,
+      name: nameTask,
+      listTask: arrTask,
+    };
+
+    Dispatch(addToDoTask(task));
+    Dispatch(cancelTaskCreation());
+  }
   return (
     <div className={styles.block}>
       <div>
@@ -36,7 +53,12 @@ export const NewList = () => {
               }}>
               <BiX />
             </CustomButton>
-            <CustomButton text="Создать список" timeoutIn={500}>
+            <CustomButton
+              text="Создать список"
+              timeoutIn={500}
+              onClick={() => {
+                addTaskArray();
+              }}>
               <BiCheck />
             </CustomButton>
           </>

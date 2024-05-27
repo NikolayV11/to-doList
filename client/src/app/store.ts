@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 
 import themeApp from "./themeAppSlice";
 import newTask from "./savingTasksSlice";
+import listTask from "./arrayTasks";
 
 export const store = configureStore({
-  reducer: { themeApp, newTask },
+  reducer: { themeApp, newTask, listTask },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

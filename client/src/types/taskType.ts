@@ -10,5 +10,3 @@ export type ArrayTaskList = {
   status: boolean;
   listTask: Task[];
 };
-
-export type ListTask = ArrayTaskList[];
