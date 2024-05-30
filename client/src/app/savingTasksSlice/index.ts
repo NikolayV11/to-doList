@@ -4,7 +4,7 @@ import { ArrayTaskList, Task } from "../../types";
 
 const initialState: ArrayTaskList = {
   status: false,
-  id: 0,
+  id: "",
   name: "",
   listTask: [],
 };
@@ -23,28 +23,24 @@ export const creatingTasksSlice = createSlice({
       state.name = "";
     },
     // добавление задачи
-    addTask: (state, action: PayloadAction<string>) => {
+    addTask: (state, action: PayloadAction<{ task: string; id: string }>) => {
       const task: Task = {
         status: false,
-        task: action.payload,
-        id: state.listTask.length,
+        task: action.payload.task,
+        id: action.payload.id,
       };
       state.listTask.push(task);
     },
     // удаление задачи
-    deleteTask: (state, action: PayloadAction<number>) => {
+    deleteTask: (state, action: PayloadAction<string>) => {
       state.listTask = state.listTask.filter((item) => {
         if (item.id !== action.payload) {
           return item;
         }
       });
-
-      state.listTask.map((item, index) => {
-        item.id = index;
-      });
     },
     // изменение статуса задачи
-    changeTask: (state, action: PayloadAction<number>) => {
+    changeTask: (state, action: PayloadAction<string>) => {
       state.listTask.map((item) => {
         if (item.id === action.payload) {
           item.status = !item.status;

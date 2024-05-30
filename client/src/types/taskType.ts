@@ -1,11 +1,11 @@
 export type Task = {
-  id: number;
+  id: string;
   task: string;
   status: boolean;
 };
 
 export type ArrayTaskList = {
-  id: number;
+  id: string;
   name: string;
   status: boolean;
   listTask: Task[];

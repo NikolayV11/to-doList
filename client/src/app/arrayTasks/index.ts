@@ -15,12 +15,9 @@ export const arrayTasksSlice = createSlice({
     // удаляем список задач из массива
     deleteToDoTask: (state, action: PayloadAction<number>) => {
       state.splice(action.payload, 1);
-      state.map((item, index) => {
-        item.id = index;
-      });
     },
     // изменяет статус списка задач если весь список выполнен
-    taskListStatus: (state, action: PayloadAction<number>) => {
+    taskListStatus: (state, action: PayloadAction<string>) => {
       state.map((item) => {
         if (item.id === action.payload) {
           item.status = !item.status;
@@ -28,35 +25,25 @@ export const arrayTasksSlice = createSlice({
       });
     },
     // изменяет статус задачи из списка
-    taskStatus: (state, action: PayloadAction<number[]>) => {
+    taskStatus: (state, action: PayloadAction<{ idArray: string; idList: string }>) => {
       state.map((item) => {
-        if (item.id === action.payload[0]) {
-          item.listTask[action.payload[1]].status = !item.listTask[action.payload[1]].status;
+        if (item.id === action.payload.idArray) {
+          item.listTask.map((item) => {
+            if (item.id === action.payload.idList) {
+              item.status = !item.status;
+            }
+          });
         }
       });
     },
     // удаление задачи из списка
-    deleteTaskList: (state, action: PayloadAction<number[]>) => {
+    deleteTaskList: (state, action: PayloadAction<{ idArray: string; idList: string }>) => {
       state.map((item) => {
-        if (item.id === action.payload[0]) {
-          item.listTask.splice(action.payload[1], 1);
-        }
-      });
-
-      const arrTask = state.find((item) => item.id === action.payload[0]);
-      console.log(arrTask);
-      if (arrTask) {
-        console.log("filter1");
-        if (arrTask.listTask.length === 0) {
-          state.splice(arrTask.id, 1);
-          state.map((item, index) => (item.id = index));
-        }
-      }
-      state.map((item) => {
-        if (item.id === action.payload[0]) {
-          item.listTask.map((item, index) => {
-            item.id = index;
-          });
+        if (item.id === action.payload.idArray) {
+          const indexElement = item.listTask.findIndex((item) => item.id === action.payload.idList);
+          if (indexElement >= 0) {
+            item.listTask.splice(indexElement, 1);
+          }
         }
       });
     },

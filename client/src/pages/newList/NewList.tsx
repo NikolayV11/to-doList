@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NameToDo, NewTask, ChangeTaskNew, CustomButton } from "../../components";
+import { NameToDo, NewTask, ChangeTaskNew, CustomButton, getId } from "../../components";
 
 import styles from "./NewList.module.scss";
 
@@ -16,13 +16,16 @@ export const NewList = () => {
   const arrTask = useSelector((state: RootState) => state.newTask.listTask);
   const nameTask = useSelector((state: RootState) => state.newTask.name);
 
-  // длина списка
-  const lengthList = useSelector((state: RootState) => state.listTask.length);
+  // генерация ID
+  const taskList = getId(
+    useSelector((state: RootState) => state.listTask),
+    40,
+  );
 
   // добавляет в общий список задач и очищает временное хранилище
   function addTaskArray() {
     const task: ArrayTaskList = {
-      id: lengthList,
+      id: taskList,
       status: false,
       name: nameTask,
       listTask: arrTask,

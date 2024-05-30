@@ -11,3 +11,4 @@ export * from "./newTask";
 export * from "./nameToDo";
 export * from "./changeTaskNew";
 export * from "./chengeTask";
+export * from "./renderId";

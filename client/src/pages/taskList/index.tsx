@@ -9,21 +9,22 @@ import { useLocation } from "react-router-dom";
 import { ChangeTask } from "../../components";
 import { deleteTaskList, taskStatus, deleteToDoTask } from "../../app/arrayTasks";
 
+type IDList = { idArray: string; idList: string };
 export function TaskList() {
   const Dispatch = useAppDispatch();
   const location = useLocation();
-  const idTask = +location.pathname.split("/")[2];
+  const idTask = location.pathname.split("/")[2];
 
   const taskList = useSelector((state: RootState) =>
     state.listTask.find((item) => item.id === idTask),
   );
 
-  function deleteTask(id: number[]) {
-    Dispatch(deleteTaskList(id));
+  function deleteTask({ idArray, idList }: IDList) {
+    Dispatch(deleteTaskList({ idArray, idList }));
   }
 
-  function checkedTask(id: number[]) {
-    Dispatch(taskStatus(id));
+  function checkedTask({ idArray, idList }: IDList) {
+    Dispatch(taskStatus({ idArray, idList }));
   }
   return (
     taskList && (
@@ -32,15 +33,15 @@ export function TaskList() {
           <h1>{taskList.name}</h1>
         </div>
         <div>
-          {taskList.listTask.map((item, index) => {
+          {taskList.listTask.map((item) => {
             return (
               <ChangeTask
-                deleteTask={() => deleteTask([idTask, item.id])}
+                deleteTask={() => deleteTask({ idArray: taskList.id, idList: item.id })}
                 checkedTask={() => {
-                  checkedTask([idTask, item.id]);
+                  checkedTask({ idArray: taskList.id, idList: item.id });
                 }}
                 {...item}
-                key={`${idTask} ${index}`}
+                key={`${taskList.id}`}
               />
             );
           })}

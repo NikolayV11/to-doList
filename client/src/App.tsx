@@ -6,7 +6,6 @@ import { darkTheme } from "./app/themeAppSlice";
 import { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 
-import { UseSelector } from "react-redux";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -34,7 +33,7 @@ function App() {
               </Link>
             </div>
             {taskList.map((item, index) => {
-              return <MiniPost title={item.name} id={index} key={index} />;
+              return <MiniPost title={item.name} id={item.id} key={index} />;
             })}
           </>
         ) : (
