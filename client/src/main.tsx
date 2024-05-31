@@ -7,11 +7,12 @@ import { Provider } from "react-redux";
 
 import { store } from "./app/store.ts";
 
-import { AllList, NewList, TaskList } from "./pages";
+import { AllList, NewList, TaskList, ErrorPage } from "./pages";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/archive",

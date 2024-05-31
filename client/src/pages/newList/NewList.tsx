@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NameToDo, NewTask, ChangeTaskNew, CustomButton, getId } from "../../components";
+import { NameToDo, NewTask, ChangeTask, CustomButton, getId } from "../../components";
 
 import styles from "./NewList.module.scss";
 
@@ -7,7 +7,7 @@ import { RootState, useAppDispatch } from "../../app/store";
 import { BiCheck, BiX } from "react-icons/bi";
 
 import { cancelTaskCreation } from "../../app/savingTasksSlice";
-import { addToDoTask } from "../../app/arrayTasks";
+import { addToDoTask, deleteToDoTask, taskListStatus } from "../../app/arrayTasks";
 import { ArrayTaskList } from "../../types";
 
 export const NewList = () => {
@@ -41,7 +41,18 @@ export const NewList = () => {
       </div>
       <div className={styles.block__main}>
         {arrTask.map((item, index) => {
-          return <ChangeTaskNew {...item} key={`${index} ${item.id}`} />;
+          return (
+            <ChangeTask
+              deleteTask={() => {
+                Dispatch(deleteToDoTask(item.id));
+              }}
+              checkedTask={() => {
+                Dispatch(taskListStatus(item.id));
+              }}
+              {...item}
+              key={`${index} ${item.id}`}
+            />
+          );
         })}
         {arrTask.length < 10 && <NewTask />}
       </div>

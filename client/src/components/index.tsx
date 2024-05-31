@@ -9,6 +9,6 @@ export * from "./toolTipComponent";
 export * from "./CustomButton";
 export * from "./newTask";
 export * from "./nameToDo";
-export * from "./changeTaskNew";
 export * from "./chengeTask";
 export * from "./renderId";
+export * from "./TaskBlok";

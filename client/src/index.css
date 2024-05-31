@@ -89,3 +89,14 @@ header h1 {
   height: 20px;
   stroke-width: 0;
 }
+
+#error-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

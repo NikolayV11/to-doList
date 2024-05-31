@@ -7,7 +7,7 @@ import { listLink } from "./listLink";
 export const Menu = () => {
   const [open, setOpen] = useState(false);
 
-  const refMenu = useRef<HTMLElement>();
+  const refMenu = useRef<HTMLElement>(null);
   function onClickMenu() {
     setOpen(!open);
   }
@@ -19,6 +19,7 @@ export const Menu = () => {
       },
     ) => {
       // сверяет
+      if (!refMenu) return;
       if (!event.composedPath().includes(refMenu.current)) {
         setOpen(false);
       }
@@ -29,6 +30,7 @@ export const Menu = () => {
       window.removeEventListener("click", clickOutsideTheBlock);
     };
   }, []);
+  if (!refMenu) return;
   return (
     <nav ref={refMenu} className={styles.nav}>
       <button onClick={onClickMenu} className={styles.nav__btn}>

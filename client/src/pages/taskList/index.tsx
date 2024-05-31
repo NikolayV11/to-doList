@@ -1,13 +1,9 @@
-import React from "react";
-
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../app/store";
 
-import styles from "./task.module.scss";
-
 import { useLocation } from "react-router-dom";
 import { ChangeTask } from "../../components";
-import { deleteTaskList, taskStatus, deleteToDoTask } from "../../app/arrayTasks";
+import { deleteTaskList, taskStatus } from "../../app/arrayTasks";
 
 type IDList = { idArray: string; idList: string };
 export function TaskList() {
