@@ -18,9 +18,10 @@ export function TaskBlok({ id, name, status }: Omit<ArrayTaskList, "listTask">) 
   }
 
   return (
-    <div className={styles.blok}>
+    <div className={`${styles.block} ${statusTask && styles.block_active}`}>
       <input type="checkbox" checked={statusTask} onChange={() => onCheck(id)} />
       <Link to={`/task/${id}`}>{name}</Link>
+      {status && <p>выполнено</p>}
     </div>
   );
 }
