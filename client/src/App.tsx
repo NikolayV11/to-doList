@@ -1,11 +1,17 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Header, Main } from "./components";
-import { useAppDispatch } from "./app/store";
+import { useAppDispatch, RootState } from "./app/store";
 import { darkTheme } from "./app/themeAppSlice";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Home } from "./pages";
+import { useSelector } from "react-redux";
 
 function App() {
+  // Первая загрузка
+  const isMounted = useRef(false);
+  // массив списка задач
+  const listTask = useSelector((state: RootState) => state.listTask);
+
   const location = useLocation();
   const dispatch = useAppDispatch();
 
@@ -15,6 +21,14 @@ function App() {
       dispatch(darkTheme());
     }
   }, []);
+
+  // записываем данные в память браузера
+  useEffect(() => {
+    if (isMounted.current) {
+      localStorage.setItem("arrTask", JSON.stringify(listTask));
+    }
+    isMounted.current = true;
+  }, [listTask]);
 
   return (
     <div className="container">

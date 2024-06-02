@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { ArrayTaskList } from "../../types";
+import { getIsLocal } from "./getIsLocal";
 
-const initialState: ArrayTaskList[] = [];
+const initialState: ArrayTaskList[] = getIsLocal();
 
 export const arrayTasksSlice = createSlice({
   name: "arrayTasks",
