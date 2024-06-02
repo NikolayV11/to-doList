@@ -15,7 +15,8 @@ export const arrayTasksSlice = createSlice({
     },
     // удаляем список задач из массива
     deleteToDoTask: (state, action: PayloadAction<string>) => {
-      state = state.filter((item) => item.id !== action.payload);
+      const newList = state.findIndex((item) => item.id === action.payload);
+      state = state.splice(newList, 1);
     },
     // изменяет статус списка задач если весь список выполнен
     taskListStatus: (state, action: PayloadAction<string>) => {

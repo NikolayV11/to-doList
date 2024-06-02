@@ -108,3 +108,43 @@ header h1 {
   gap: 20px;
   padding: 20px;
 }
+
+.title_list {
+  display: flex;
+  padding: 20;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 0;
+}
+.title_list input {
+  cursor: pointer;
+}
+.title_list h1 {
+  cursor: default;
+}
+.info_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+}
+
+.info_list a {
+  font-size: 18px;
+  display: inline-block;
+  border: 1px solid #929090;
+  padding: 12px 40px;
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+}
+
+body.light .info_list a:hover {
+  background-color: #53b972;
+  box-shadow: 3px 3px 8px 2px rgba(122, 122, 122, 0.877);
+}
+body.dark .info_list a:hover {
+  background-color: rgb(77, 177, 243);
+  color: black;
+  box-shadow: inset 0px 0px 6px 5px rgba(122, 122, 122, 0.877);
+}
