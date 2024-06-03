@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import { darkTheme } from "../../app/themeAppSlice";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../app/store";
@@ -18,6 +18,9 @@ export function ErrorPage() {
     <div id="error-page">
       <h1>Oops!</h1>
       <h3>Что-то пошло не так</h3>
+      <div className="info_list" style={{ marginTop: "20px" }}>
+        <Link to="/">Вернутся на главную страницу</Link>
+      </div>
     </div>
   );
 }
